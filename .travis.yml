@@ -9,6 +9,7 @@ script:
   - dotnet restore ./src/Akka.Monitoring.NewRelic
   - dotnet build ./src/Akka.Monitoring.NewRelic
   - "if [[ $TRAVIS_PULL_REQUEST == 'false' && $TRAVIS_TAG ]]; then
+  dotnet build ./src/Akka.Monitoring.NewRelic --configuration Release /p:Version=$TRAVIS_TAG
   dotnet pack ./src/Akka.Monitoring.NewRelic --configuration Release /p:Version=$TRAVIS_TAG;
   nuget push ./src/Akka.Monitoring.NewRelic/bin/Release/*.nupkg -ApiKey $NUGET_API_KEY;
   fi"
