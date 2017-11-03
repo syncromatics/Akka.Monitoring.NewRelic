@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Syncromatics Engineering</Authors>
+    <Company>Syncromatics Corporation</Company>
+    <Description>Akka.net monitoring adapter for New Relic</Description>
+    <Copyright>2017 Syncromatics Corporation</Copyright>
+    <PackageLicenseUrl>https://github.com/syncromatics/Akka.Monitoring.NewRelic/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/syncromatics/Akka.Monitoring.NewRelic</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/syncromatics/Akka.Monitoring.NewRelic</RepositoryUrl>
+    <PackageTags>akka.net,newrelic,monitoring,akka.monitoring</PackageTags>
+    <Version>0.0.0-develop</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Akka.Monitoring" Version="0.7.0" />
+    <PackageReference Include="NewRelic.Agent.Api" Version="6.18.139" />
+  </ItemGroup>
+
+</Project>
