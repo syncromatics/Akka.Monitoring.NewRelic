@@ -4,15 +4,38 @@
 
 ## Quickstart
 
-Add the `Akka.Monitoring.NewRelic` package to your project:
+### Add the `Akka.Monitoring.NewRelic` package to your project:
 
 ```bash
 dotnet add package Akka.Monitoring.NewRelic
 ```
 
-Then instrument your actor system as normal.
+### Ensure the [New Relic agent is installed](https://docs.newrelic.com/docs/agents/net-agent/getting-started/introduction-new-relic-net).
 
-From [PlutoActor](src/Akka.Monitoring.NewRelic.Demo/PlutoActor.cs):
+Also make sure the agent is running in order to collect and report metrics from your program.
+
+### Enable the program to be monitored by the New Relic agent and name the app
+
+From [app.config](src/Akka.Monitoring.NewRelic.Demo/app.config):
+```xml
+<appSettings>
+    <add key="NewRelic.AgentEnabled" value="true" />
+    <add key="NewRelic.AppName" value="Akka.Monitoring.NewRelic.Demo" />
+</appSettings>
+```
+
+### Write code
+
+1. Register the New Relic monitor. From [Program](src/Akka.Monitoring.NewRelic.Demo/Program.cs):
+
+```csharp
+var system = ActorSystem.Create("akka-performance-demo");
+
+var didMonitorRegister = ActorMonitoringExtension.RegisterMonitor(system, new ActorNewRelicMonitor());
+```
+
+2. Instrument your actor system as normal. From [PlutoActor](src/Akka.Monitoring.NewRelic.Demo/PlutoActor.cs):
+
 ```csharp
 Receive<string>(_ =>
 {
@@ -23,6 +46,10 @@ Receive<string>(_ =>
 ```
 
 For more information on instrumenting [Akka.NET](https://github.com/akkadotnet/akka.net) actor systems, please see [Akka.Monitoring](https://github.com/petabridge/akka-monitoring).
+
+### View metrics in New Relic
+
+The instrumented metrics are collected in New Relic Insights. All metrics are prefixed with `Custom/`, per [New Relic guidelines](https://docs.newrelic.com/docs/agents/manage-apm-agents/agent-data/collect-custom-metrics).
 
 ## Building
 
