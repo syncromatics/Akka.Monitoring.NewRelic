@@ -12,8 +12,8 @@ namespace Akka.Monitoring.NewRelic.Demo
             Console.WriteLine("Starting up actor system...");
             var system = ActorSystem.Create("akka-performance-demo");
 
-            var registeredMonitor = ActorMonitoringExtension.RegisterMonitor(system, new ActorNewRelicMonitor());
-            Console.WriteLine(registeredMonitor
+            var didMonitorRegister = ActorMonitoringExtension.RegisterMonitor(system, new ActorNewRelicMonitor());
+            Console.WriteLine(didMonitorRegister
                 ? "Successfully registered NewRelic monitor"
                 : "Failed to register New Relic monitor");
 
